@@ -552,6 +552,18 @@ class _Paragraph(Subshape):
         pPr.line_spacing = value
 
     @property
+    def bullet(self):
+        pPr = self._p.pPr
+        if pPr is None:
+            return None
+        return pPr.bullet
+
+    @line_spacing.setter
+    def bullet(self, value):
+        pPr = self._p.get_or_add_pPr()
+        pPr.bullet = value
+
+    @property
     def runs(self):
         """
         Immutable sequence of |_Run| objects corresponding to the runs in
